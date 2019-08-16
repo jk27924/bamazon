@@ -51,7 +51,16 @@ function purchasePrompt () {
             var wantedQuantity = answer.quantity;
             var remainQuantity = currentStock - wantedQuantity;
 
-            if ()
+            if (currentStock >= wantedQuantity) {
+             connection.query ([
+                 {
+                     stock_quantity: remainQuantity,
+                 },
+                 {
+                     item_id: wantToBuy,
+                 }
+             ])   
+            }
         });
   
     });
