@@ -46,7 +46,12 @@ function purchasePrompt () {
                 message: "Please enter quantity of selected item you would like to purchase => ",
             }
         ]).then(function(answer){
+            var wantToBuy = answer.id;
+            var currentStock = wantToBuy.stock_quantity;
+            var wantedQuantity = answer.quantity;
+            var remainQuantity = currentStock - wantedQuantity;
 
+            if ()
         });
   
     });
