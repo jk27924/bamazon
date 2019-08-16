@@ -30,3 +30,24 @@ function displayItems() {
     });
 };
 
+function purchasePrompt () {
+    connection.query("SELECT * FROM products", function(err, res) {
+        if (err) throw err;
+  
+        inquirer.prompt([
+            {
+                name: "id",
+                type: "input",
+                message: "Please enter Item ID you like to purchase.",
+            },
+            {
+                name: "quantity",
+                type: "input",
+                message: "How many Item would you like to purchase?",
+            }
+        ]).then(function(answer){
+
+        });
+  
+    });
+  }
