@@ -20,21 +20,13 @@ function displayItems() {
         if (err) throw err;
         console.log(res);
 
-        var table = new Table ({
-            head: ["Product ID", "Product Name", "Department Name", "Price", "Quantity"],
-        });
-
         for (var i = 0; i < res.length; i++) {
-            table.push (
-                [res[i].id, res[i].product_name, res[i].department_name, res[i].price, res[i].stock_quantity]
-            )
+            console.log (
+                "ID: " + res[i].id + "Product name: " + res[i].product_name + "Department name: " + res[i].department_name + "Price: " + res[i].price + "StockQuantity: " + res[i].stock_quantity
+            )   
         };
 
-        console.log(table.toString());
         purchasePrompt();
     });
 };
-
-
-
 
