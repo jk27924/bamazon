@@ -22,7 +22,7 @@ function displayItems() {
 
         for (var i = 0; i < res.length; i++) {
             console.log (
-                "ID: " + res[i].id + "Product name: " + res[i].product_name + "Department name: " + res[i].department_name + "Price: " + res[i].price + "StockQuantity: " + res[i].stock_quantity
+                "Item ID: " + res[i].item_id + " | Product name: " + res[i].product_name + " | Department name: " + res[i].department_name + " | Price: " + res[i].price + " | StockQuantity: " + res[i].stock_quantity
             )   
         };
 
@@ -38,12 +38,12 @@ function purchasePrompt () {
             {
                 name: "id",
                 type: "input",
-                message: "Please enter Item ID you like to purchase.",
+                message: "Please enter Item ID you like to purchase => ",
             },
             {
                 name: "quantity",
                 type: "input",
-                message: "How many Item would you like to purchase?",
+                message: "Please enter quantity of selected item you would like to purchase => ",
             }
         ]).then(function(answer){
 
