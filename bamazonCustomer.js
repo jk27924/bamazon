@@ -64,16 +64,29 @@ function purchasePrompt () {
             var remainQuantity = currentStock - wantedQuantity;
 
             if (currentStock >= wantedQuantity) {
-             connection.query ([
-                 {
-                     stock_quantity: remainQuantity,
-                 },
-                 {
-                     item_id: wantToBuy,
-                 }
-             ])   
-            }
+                connection.query (
+                    "UPDATE products SET ? WHERE ?",
+                [
+                    {
+                        stock_quantity: remainQuantity,
+                    },
+                    {
+                        item_id: wantToBuy,
+                    }
+                ], function (err, res) {
+                    if (err) throw err;
+
+                
+                
+                
+                );   
+            };
+
+
+
+
+
+
         });
-  
     });
   }
