@@ -39,11 +39,23 @@ function purchasePrompt () {
                 name: "id",
                 type: "input",
                 message: "Please enter Item ID you like to purchase => ",
+                validate: function(value) {
+                    if (isNaN(value) === false) {
+                      return true;
+                    }
+                    return false;
+                }
             },
             {
                 name: "quantity",
                 type: "input",
                 message: "Please enter quantity of selected item you would like to purchase => ",
+                validate: function(value) {
+                    if (isNaN(value) === false) {
+                      return true;
+                    }
+                    return false;
+                }
             }
         ]).then(function(answer){
             var wantToBuy = answer.id;
