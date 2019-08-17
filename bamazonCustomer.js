@@ -18,17 +18,17 @@ connection.connect(function(err) {
 function displayItems() {
     connection.query("SELECT * FROM products", function(err, res) {
         if (err) throw err;
-        console.table(res);
-        // console.log("-------------------------------------------------------- WELCOME TO BAMAZON --------------------------------------------------------\n");
-        // console.log("------------------------------------------------------------------------------------------------------------------------------------");
+        // console.table(res);
+        console.log("-------------------------------------------------------- WELCOME TO BAMAZON --------------------------------------------------------\n");
+        console.log("------------------------------------------------------------------------------------------------------------------------------------");
 
-        // for (var i = 0; i < res.length; i++) {
-        //     console.log (
-        //         "Item ID: " + res[i].item_id + " | Product Name: " + res[i].product_name + " | Department Name: " + res[i].department_name + " | Price: $" + res[i].price + " | Stock Quantity: " + res[i].stock_quantity +
-        //         "\n------------------------------------------------------------------------------------------------------------------------------------"
-        //     );   
-        //     console.log("------------------------------------------------------------------------------------------------------------------------------------");
-        // };
+        for (var i = 0; i < res.length; i++) {
+            console.log (
+                "Item ID: " + res[i].item_id + " | Product Name: " + res[i].product_name + " | Department Name: " + res[i].department_name + " | Price: $" + res[i].price + " | Stock Quantity: " + res[i].stock_quantity +
+                "\n------------------------------------------------------------------------------------------------------------------------------------"
+            );   
+            console.log("------------------------------------------------------------------------------------------------------------------------------------");
+        };
 
         purchasePrompt();
     });
@@ -47,7 +47,7 @@ function purchasePrompt () {
                     if (isNaN(value) === false) {
                       return true;
                     }
-                    return false;
+                    return "Please enter a valid item ID with whole non-zero number.";
                 }
             },
             {
@@ -58,7 +58,7 @@ function purchasePrompt () {
                     if (isNaN(value) === false) {
                       return true;
                     }
-                    return false;
+                    return "Please enter a valid quantity of chosen item with whole non-zero number.";
                 }
             }
         ]).then(function(answer){
@@ -81,25 +81,42 @@ function purchasePrompt () {
                     function (err, res) {
                         if (err) throw err;
                             console.log (
-                                "New Update to the Products Data" + 
-                                "\n---------------------------------------------" + 
+                                "\n------------------------------------------------------------------------------------------------------------------------------------" +
+                                "\n*** Your Order Summary ***" + 
+                                "\n------------------------------------------------------------------------------------------------------------------------------------" + 
                                 "\nItem ID: " + wantToBuy.item_id + 
                                 "\nProduct Name: " + wantToBuy.product_name + 
                                 "\nDepartment: " + wantToBuy.department_name + 
                                 "\nPrice: $" + wantToBuy.price + 
                                 "\nStock Quantity: " + remainQuantity +
-                                "\n---------------------------------------------"
+                                "\n------------------------------------------------------------------------------------------------------------------------------------"
                             );
 
                             var totalCost = (wantToBuy.price * wantedQuantity).toFixed(2);
 
-                            console.log("The Total You Have Been Paid is $" + totalCost);
+                            console.log (
+                                "\n------------------------------------------------------------------------------------------------------------------------------------" +
+                                "\nYour Total is $" + totalCost +
+                                "\n------------------------------------------------------------------------------------------------------------------------------------" +
+                                "\n*** Congrats! Your Order has been placed! ***" +
+                                "\n*** Thank you for shopping with us! ***" +
+                                "\n------------------------------------------------------------------------------------------------------------------------------------"
+                            );
                     }
                 ); 
 
             } else {
-                console.log("We are sorry. We don't have enough stock\n");
-                console.log("No changes have been made");
+                console.log(
+                    "\n------------------------------------------------------------------------------------------------------------------------------------" +
+                    "\n*** We are very Sorry! We currently do not have enough stock at this moment. We will get more as soon as possible! ***" +
+                    "\n------------------------------------------------------------------------------------------------------------------------------------"
+                );
+
+                console.log(
+                    "\n------------------------------------------------------------------------------------------------------------------------------------" +
+                    "\n*** Please Modify your Order. ***" +
+                    "\n------------------------------------------------------------------------------------------------------------------------------------"
+                );
             }
             
             connection.end();
