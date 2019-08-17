@@ -58,34 +58,47 @@ function purchasePrompt () {
                 }
             }
         ]).then(function(answer){
-            var wantToBuy = answer.id;
-            var currentStock = wantToBuy.stock_quantity;
+            var wantToBuy = res.id;
+            var currentStock = res.id.quantity;
             var wantedQuantity = answer.quantity;
             var remainQuantity = currentStock - wantedQuantity;
 
             if (currentStock >= wantedQuantity) {
                 connection.query (
                     "UPDATE products SET ? WHERE ?",
-                [
-                    {
-                        stock_quantity: remainQuantity,
-                    },
-                    {
-                        item_id: wantToBuy,
+                    [
+                        {
+                            stock_quantity: remainQuantity,
+                        },
+                        {
+                            item_id: wantToBuy,
+                        }
+                    ], 
+                    function (err, res) {
+                        if (err) throw err;
+                            console.log (
+                                "New Update to the Products Data" + 
+                                "\n---------------------------------------------" + 
+                                "\nID: " + wantToBuy.item_id + 
+                                "\nProduct Name: " + wantToBuy.product_name + 
+                                "\nDepartment: " + wantToBuy.department_name + 
+                                "\nPrice: " + wantToBuy.price + 
+                                "\nStockQuantity: " + stock_quantity +
+                                "\n---------------------------------------------"
+                            );
+
+                            var totalCost = wantToBuy.price * wantedQuantity;
+
+                            console.log("The Total You Have Been Paid is :  $" + totalCost);
                     }
-                ], function (err, res) {
-                    if (err) throw err;
+                ); 
 
-                
-                
-                
-                );   
-            };
-
-
-
-
-
+            } else {
+                console.log("We are sorry. We don't have enough stock\n");
+                console.log("No changes have been made");
+            }
+            
+            connection.end();
 
         });
     });
