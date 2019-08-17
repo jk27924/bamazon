@@ -18,16 +18,17 @@ connection.connect(function(err) {
 function displayItems() {
     connection.query("SELECT * FROM products", function(err, res) {
         if (err) throw err;
-        console.log("-------------------------------------------------------- WELCOME TO BAMAZON --------------------------------------------------------\n");
-        console.log("------------------------------------------------------------------------------------------------------------------------------------");
+        console.table(res);
+        // console.log("-------------------------------------------------------- WELCOME TO BAMAZON --------------------------------------------------------\n");
+        // console.log("------------------------------------------------------------------------------------------------------------------------------------");
 
-        for (var i = 0; i < res.length; i++) {
-            console.log (
-                "Item ID: " + res[i].item_id + " | Product Name: " + res[i].product_name + " | Department Name: " + res[i].department_name + " | Price: $" + res[i].price + " | Stock Quantity: " + res[i].stock_quantity +
-                "\n------------------------------------------------------------------------------------------------------------------------------------"
-            );   
-            console.log("------------------------------------------------------------------------------------------------------------------------------------");
-        };
+        // for (var i = 0; i < res.length; i++) {
+        //     console.log (
+        //         "Item ID: " + res[i].item_id + " | Product Name: " + res[i].product_name + " | Department Name: " + res[i].department_name + " | Price: $" + res[i].price + " | Stock Quantity: " + res[i].stock_quantity +
+        //         "\n------------------------------------------------------------------------------------------------------------------------------------"
+        //     );   
+        //     console.log("------------------------------------------------------------------------------------------------------------------------------------");
+        // };
 
         purchasePrompt();
     });
@@ -61,8 +62,8 @@ function purchasePrompt () {
                 }
             }
         ]).then(function(answer){
-            var wantToBuy = res[item_id];
-            var currentStock = wantToBuy.stock_quantity;
+            var wantToBuy = res[answer.id-1];
+            var currentStock = res[answer.id-1].stock_quantity;
             var wantedQuantity = answer.quantity;
             var remainQuantity = currentStock - wantedQuantity;
 
@@ -74,7 +75,7 @@ function purchasePrompt () {
                             stock_quantity: remainQuantity,
                         },
                         {
-                            item_id: wantToBuy,
+                            item_id: wantToBuy.item_id,
                         }
                     ], 
                     function (err, res) {
@@ -82,17 +83,17 @@ function purchasePrompt () {
                             console.log (
                                 "New Update to the Products Data" + 
                                 "\n---------------------------------------------" + 
-                                "\nID: " + wantToBuy.item_id + 
+                                "\nItem ID: " + wantToBuy.item_id + 
                                 "\nProduct Name: " + wantToBuy.product_name + 
                                 "\nDepartment: " + wantToBuy.department_name + 
-                                "\nPrice: " + wantToBuy.price + 
-                                "\nStockQuantity: " + stock_quantity +
+                                "\nPrice: $" + wantToBuy.price + 
+                                "\nStock Quantity: " + remainQuantity +
                                 "\n---------------------------------------------"
                             );
 
-                            var totalCost = wantToBuy.price * wantedQuantity;
+                            var totalCost = (wantToBuy.price * wantedQuantity).toFixed(2);
 
-                            console.log("The Total You Have Been Paid is :  $" + totalCost);
+                            console.log("The Total You Have Been Paid is $" + totalCost);
                     }
                 ); 
 
@@ -106,3 +107,14 @@ function purchasePrompt () {
         });
     });
 }
+
+// what is going to happen when the stock goes 0.
+// how to bring the stock back.
+// what is "UPDATE products SET ? WHERE ?"
+// why do we need validation.
+    // validate: function(value) {
+    //     if (isNaN(value) === false) {
+    //         return true;
+    //       }
+    //       return false;
+    //   }
