@@ -56,10 +56,10 @@ Then, the user is able to purchase one of those listed products by inputting its
   * When a supervisor selects `View Product Sales by Department`, the app should display a summarized table in their terminal/bash window. Use the table below as a guide.
   
 
-  | department_id | department_name | over_head_costs | product_sales | total_profit |
-  | ------------- | --------------- | --------------- | ------------- | ------------ |
-  | 01            | Electronics     | 10000           | 20000         | 10000        |
-  | 02            | Clothing        | 60000           | 100000        | 40000        |
+    | department_id | department_name | over_head_costs | product_sales | total_profit |
+    | ------------- | --------------- | --------------- | ------------- | ------------ |
+    | 01            | Electronics     | 10000           | 20000         | 10000        |
+    | 02            | Clothing        | 60000           | 100000        | 40000        |
 
 
 - Create New Department
