@@ -25,7 +25,11 @@ connection.connect(function(err) {
 function displayItems() {
     connection.query("SELECT * FROM products", function(err, res) {
         if (err) throw err;
-        // console.table(res);
+        // TIP to have all products in a nice TABLE 
+            // => console.table(res);
+                // => This shows all items in a table on Terminal. It looks clean, but index numbers also appear. This is just another method to list the products on Terminal.
+
+        // Welcome Message and Show Products List with information
         console.log("-------------------------------------------------------- WELCOME TO BAMAZON --------------------------------------------------------\n");
         console.log("------------------------------------------------------------------------------------------------------------------------------------");
 
