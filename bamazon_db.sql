@@ -14,8 +14,8 @@ CREATE TABLE products (
 );
 
 INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES 
-("Manchester United Soccer Jersey", "Sports & Outdoors", 99.99, 30),
-("Tottenham Hotspur Banner", "Sports & Outdoors", 39.99, 15),
+("Manchester United Soccer Jersey", "Sports & Outdoors", 99.99, 10),
+("Tottenham Hotspur Soccer Jersey", "Sports & Outdoors", 99.99, 10),
 ("Nike Hyper Venom Soccer Cleats", "Sports & Outdoors", 149.99, 50),
 ("Babolat Tennis Racquet", "Sports & Outdoors", 189.99, 10),
 ("Iron Man Infinity Gauntlet", "Toys", 199.99, 20),

@@ -18,12 +18,15 @@ connection.connect(function(err) {
 function displayItems() {
     connection.query("SELECT * FROM products", function(err, res) {
         if (err) throw err;
-        console.log(res);
+        console.log("-------------------------------------------------------- WELCOME TO BAMAZON --------------------------------------------------------\n");
+        console.log("------------------------------------------------------------------------------------------------------------------------------------");
 
         for (var i = 0; i < res.length; i++) {
             console.log (
-                "Item ID: " + res[i].item_id + " | Product name: " + res[i].product_name + " | Department name: " + res[i].department_name + " | Price: " + res[i].price + " | StockQuantity: " + res[i].stock_quantity
-            )   
+                "Item ID: " + res[i].item_id + " | Product Name: " + res[i].product_name + " | Department Name: " + res[i].department_name + " | Price: $" + res[i].price + " | Stock Quantity: " + res[i].stock_quantity +
+                "\n------------------------------------------------------------------------------------------------------------------------------------"
+            );   
+            console.log("------------------------------------------------------------------------------------------------------------------------------------");
         };
 
         purchasePrompt();
@@ -38,7 +41,7 @@ function purchasePrompt () {
             {
                 name: "id",
                 type: "input",
-                message: "Please enter Item ID you like to purchase => ",
+                message: "Please enter Item ID you would like to purchase => ",
                 validate: function(value) {
                     if (isNaN(value) === false) {
                       return true;
@@ -58,8 +61,8 @@ function purchasePrompt () {
                 }
             }
         ]).then(function(answer){
-            var wantToBuy = res.id;
-            var currentStock = res.id.quantity;
+            var wantToBuy = res[item_id];
+            var currentStock = wantToBuy.stock_quantity;
             var wantedQuantity = answer.quantity;
             var remainQuantity = currentStock - wantedQuantity;
 
@@ -102,4 +105,4 @@ function purchasePrompt () {
 
         });
     });
-  }
+}
