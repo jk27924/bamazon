@@ -1,10 +1,16 @@
+// Required Dependencies
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 
+// MySQL Connection (from MAMP)
 var connection = mysql.createConnection({
     host: "localhost",
     port: 8889,
+
+    // Username
     user: "root",
+
+    // Credentials
     password: "root",
     database: "bamazon_db"
 });
@@ -15,6 +21,7 @@ connection.connect(function(err) {
     displayItems();
 });
 
+// Display Inventory from database once MySQL connection is established
 function displayItems() {
     connection.query("SELECT * FROM products", function(err, res) {
         if (err) throw err;
@@ -34,6 +41,7 @@ function displayItems() {
     });
 };
 
+// Prompt user to enter ITEM ID the user wants to purchase, and QUANTITY of chosen Item ID 
 function purchasePrompt () {
     connection.query("SELECT * FROM products", function(err, res) {
         if (err) throw err;
@@ -43,6 +51,8 @@ function purchasePrompt () {
                 name: "id",
                 type: "input",
                 message: "Please enter Item ID you would like to purchase => ",
+
+                // Validate input for whole non-zero number
                 validate: function(value) {
                     if (isNaN(value) === false) {
                       return true;
@@ -54,6 +64,8 @@ function purchasePrompt () {
                 name: "quantity",
                 type: "input",
                 message: "Please enter quantity of selected item you would like to purchase => ",
+
+                // Validate input for whole non-zero number
                 validate: function(value) {
                     if (isNaN(value) === false) {
                       return true;
@@ -62,13 +74,18 @@ function purchasePrompt () {
                 }
             }
         ]).then(function(answer){
+
+            // Declare Variables to calculate stock level
+                // 1st product's index number is 0. Make sure to minus one from the ID
             var wantToBuy = res[answer.id-1];
             var currentStock = res[answer.id-1].stock_quantity;
             var wantedQuantity = answer.quantity;
             var remainQuantity = currentStock - wantedQuantity;
 
+            // If the quantity desired by the user is in the stock,
             if (currentStock >= wantedQuantity) {
                 connection.query (
+                    // Update stock level by replacing it with remaining quantity, and applying item ID by user choice 
                     "UPDATE products SET ? WHERE ?",
                     [
                         {
@@ -87,8 +104,10 @@ function purchasePrompt () {
                                 "\nItem ID: " + wantToBuy.item_id + 
                                 "\nProduct Name: " + wantToBuy.product_name + 
                                 "\nDepartment: " + wantToBuy.department_name + 
-                                "\nPrice: $" + wantToBuy.price + 
-                                "\nStock Quantity: " + remainQuantity +
+                                "\nUnit Price: $" + wantToBuy.price + 
+                                "\nPurchased Quantity: " + wantedQuantity + 
+                                "\n------------------------------------------------------------------------------------------------------------------------------------" +
+                                "\n<< Updated Stock Quantity for " + wantToBuy.product_name + ": " + remainQuantity + " left >>" +
                                 "\n------------------------------------------------------------------------------------------------------------------------------------"
                             );
 
@@ -96,7 +115,7 @@ function purchasePrompt () {
 
                             console.log (
                                 "\n------------------------------------------------------------------------------------------------------------------------------------" +
-                                "\nYour Total is $" + totalCost +
+                                "\n*** Your Total is $" + totalCost + " ***" +
                                 "\n------------------------------------------------------------------------------------------------------------------------------------" +
                                 "\n*** Congrats! Your Order has been placed! ***" +
                                 "\n*** Thank you for shopping with us! ***" +
@@ -105,6 +124,7 @@ function purchasePrompt () {
                     }
                 ); 
 
+            // If the quantity desired by the user is NOT in the stock,
             } else {
                 console.log(
                     "\n------------------------------------------------------------------------------------------------------------------------------------" +
@@ -119,19 +139,9 @@ function purchasePrompt () {
                 );
             }
             
+            // End the Database Connection
             connection.end();
 
         });
     });
 }
-
-// what is going to happen when the stock goes 0.
-// how to bring the stock back.
-// what is "UPDATE products SET ? WHERE ?"
-// why do we need validation.
-    // validate: function(value) {
-    //     if (isNaN(value) === false) {
-    //         return true;
-    //       }
-    //       return false;
-    //   }
