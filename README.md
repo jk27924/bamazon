@@ -70,6 +70,12 @@ https://youtu.be/ymjpHojze4M
 
 ## Screenshots of App
 
+<img src="images/01-initial-value-db.png">
+<img src="images/02-validation.png">
+<img src="images/03-validation.png">
+<img src="images/04-order-placed.png">
+<img src="images/05-db-update-after-order.png">
+<img src="images/06-not-enough-stock.png">
 
 
 
