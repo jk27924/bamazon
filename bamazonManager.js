@@ -118,7 +118,7 @@ function addInven () {
         };
 
 // -------------------------------
-
+        console.log ("\n");
         inquirer.prompt([
             {
                 name: "add",
