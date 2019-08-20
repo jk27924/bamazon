@@ -34,7 +34,8 @@ function start () {
                 "View Products for Sale",
                 "View Low Inventory",
                 "Add to Inventory",
-                "Add a New Product"
+                "Add a New Product",
+                "Log Out"
             ]
         },
     ]).then(function (answer) {
@@ -46,6 +47,8 @@ function start () {
             case "Add to Inventory": addInven();
                 break;
             case "Add a New Product": addProduct();
+                break;
+            case "Log Out": logout();
                 break;
         }
     });
@@ -278,4 +281,9 @@ function readProducts() {
         start();
 
     });
+}
+
+function logout() {
+    console.log("\n------------------------------------------------------------- GOOD BYE -------------------------------------------------------------\n");
+    connection.end();
 }
