@@ -177,5 +177,78 @@ function addInven () {
 // -------------------------------
 
 function addProduct () {
-    
+    console.log
+    ("------------------------------------------------------ ADD NEW PRODUCT ------------------------------------------------------\n");
+    console.log ("------------------------------------------------------------------------------------------------------------------------------------");
+
+    inquirer.prompt ([
+        {
+            name: "product",
+            type: "input",
+            message: "Product Name: ",
+            validate: function (value) {
+                if (isNaN(value) === true) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        },
+        {
+            name: "department",
+            type: "input",
+            message: "Department Name: ",
+            validate: function (value) {
+                if (isNaN(value) === true) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        },
+        {
+            name: "price",
+            type: "input",
+            message: "Price: ",
+            validate: function (value) {
+                if (isNaN(value) === false) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        },
+        {
+            name: "quantity",
+            type: "input",
+            message: "Stock Quantity: ",
+            validate: function (value) {
+                if (isNaN(value) === false) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        },
+    ]).then(function (answer) {
+        connection.query (
+            "INSERT INTO products SET ?",
+            {
+                product_name: answer.product,
+                department_name: answer.department,
+                price: answer.price,
+                stock_quantity: answer.quantity
+            },
+            function (err, res) {
+                console.log (
+                    "\n------------------------------------------------------------------------------------------------------------------------------------" +
+                    "\n*** INVENTORY DATABASE UPDATED WITH NEW PRODUCTS ***" + 
+                    "\n------------------------------------------------------------------------------------------------------------------------------------"
+                );
+
+                readProducts();
+            }
+        )
+    });
 }
+
