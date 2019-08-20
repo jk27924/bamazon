@@ -19,6 +19,8 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err) {
     if (err) throw err;
+
+    console.log("\n");
     start();
 });
 
@@ -27,12 +29,12 @@ function start () {
         {
             name: "selection",
             type: "rawlist",
-            message: "Choose one of these",
+            message: "Hello, Manager. What would you like to do today?",
             choices: [
                 "View Products for Sale",
                 "View Low Inventory",
                 "Add to Inventory",
-                "Add New Product"
+                "Add a New Product"
             ]
         },
     ]).then(function (answer) {
@@ -43,7 +45,7 @@ function start () {
                 break;
             case "Add to Inventory": addInven();
                 break;
-            case "Add New Product": addProduct();
+            case "Add a New Product": addProduct();
                 break;
         }
     });
@@ -54,17 +56,20 @@ function start () {
 function viewProducts () {
     connection.query("SELECT * FROM products", function(err, res) {
         if (err) throw err;
-        console.log("------------------------------------------------------ VIEW PRODUCTS FOR SALE ------------------------------------------------------\n");
+        console.log("\n------------------------------------------------------ VIEW PRODUCTS FOR SALE ------------------------------------------------------\n");
         console.log("------------------------------------------------------------------------------------------------------------------------------------");
 
         for (var i = 0; i < res.length; i++) {
             console.log (
                 "Item ID: " + res[i].item_id + " | Product Name: " + res[i].product_name + " | Department Name: " + res[i].department_name + " | Price: $" + res[i].price + " | Stock Quantity: " + res[i].stock_quantity +
                 "\n------------------------------------------------------------------------------------------------------------------------------------"
-            );   
+            );
+            
             console.log("------------------------------------------------------------------------------------------------------------------------------------");
         };
+        console.log("\n");
         start();
+
     });
 }
 
@@ -74,7 +79,7 @@ function viewProducts () {
 function viewLowInven () {
     connection.query("SELECT * FROM products", function(err, res) {
         if (err) throw err;
-        console.log("------------------------------------------------------ VIEW LOW INVENTORY ------------------------------------------------------\n");
+        console.log("\n--------------------------------------------------- VIEW LOW INVENTORY (Qty < 5) ---------------------------------------------------\n");
         console.log("------------------------------------------------------------------------------------------------------------------------------------");
 
         for (var i = 0; i < res.length; i++) {
@@ -86,6 +91,7 @@ function viewLowInven () {
                 console.log("------------------------------------------------------------------------------------------------------------------------------------");
             };
         };
+        console.log("\n");
         start();
     }); 
 }
@@ -97,7 +103,7 @@ function viewLowInven () {
 function addInven () {
     connection.query("SELECT * FROM products", function(err, res) {
         if (err) throw err;
-        console.log("------------------------------------------------------ ADD TO INVENTORY ------------------------------------------------------\n");
+        console.log("\n--------------------------------------------------------- ADD TO INVENTORY ---------------------------------------------------------\n");
         console.log("------------------------------------------------------------------------------------------------------------------------------------");
 
         for (var i = 0; i < res.length; i++) {
@@ -114,7 +120,7 @@ function addInven () {
             {
                 name: "add",
                 type: "input",
-                message: "Please enter the Item ID that needs more inventory.",
+                message: "Please enter the Item ID that needs more inventory => ",
                 validate: function(value) {
                     if (isNaN(value) === false) {
                       return true;
@@ -125,7 +131,7 @@ function addInven () {
             {
                 name: "qty",
                 type: "input",
-                message: "Please enter how many inventory needs to be  added for the chosen item.",
+                message: "Please enter quantity needs to be added for the chosen item => ",
                 validate: function(value) {
                     if (isNaN(value) === false) {
                       return true;
@@ -167,6 +173,7 @@ function addInven () {
                         "\n------------------------------------------------------------------------------------------------------------------------------------"
                     );
 
+                    console.log("\n");
                     start();
                 } 
             )
@@ -174,12 +181,12 @@ function addInven () {
     });
 }
 
+
 // -------------------------------
 
 function addProduct () {
     console.log
-    ("------------------------------------------------------ ADD NEW PRODUCT ------------------------------------------------------\n");
-    console.log ("------------------------------------------------------------------------------------------------------------------------------------");
+    ("\n--------------------------------------------------------- ADD A NEW PRODUCT --------------------------------------------------------\n");
 
     inquirer.prompt ([
         {
@@ -209,7 +216,7 @@ function addProduct () {
         {
             name: "price",
             type: "input",
-            message: "Price: ",
+            message: "Price: $",
             validate: function (value) {
                 if (isNaN(value) === false) {
                     return true;
@@ -242,7 +249,7 @@ function addProduct () {
             function (err, res) {
                 console.log (
                     "\n------------------------------------------------------------------------------------------------------------------------------------" +
-                    "\n*** INVENTORY DATABASE UPDATED WITH NEW PRODUCTS ***" + 
+                    "\n*** INVENTORY DATABASE UPDATED WITH A NEW PRODUCT ***" + 
                     "\n------------------------------------------------------------------------------------------------------------------------------------"
                 );
 
@@ -252,3 +259,23 @@ function addProduct () {
     });
 }
 
+function readProducts() {
+    console.log ("\n");
+    
+    connection.query("SELECT * FROM products", function (err, res) {
+        if (err) throw err;
+
+        console.log("------------------------------------------------------------------------------------------------------------------------------------");
+
+        for (var i = 0; i < res.length; i++) {
+            console.log (
+                "Item ID: " + res[i].item_id + " | Product Name: " + res[i].product_name + " | Department Name: " + res[i].department_name + " | Price: $" + res[i].price + " | Stock Quantity: " + res[i].stock_quantity +
+                "\n------------------------------------------------------------------------------------------------------------------------------------");   
+
+            console.log("------------------------------------------------------------------------------------------------------------------------------------");
+        }
+        console.log("\n");
+        start();
+
+    });
+}
