@@ -72,23 +72,61 @@ Then, the user is able to purchase one of those listed products by inputting its
 ## Screenshots of App
 
 ### Customer 01_Initial Values of Existing Products in Database
-<img src="images/01-initial-value-db.png">
+<img src="images/customer-01-initial-value-db.png">
 
 ### Customer 02_Purchase Prompt & Validation for Item ID
-<img src="images/02-validation.png">
+<img src="images/customer-02-validation.png">
 
 ### Customer 03_Purchase Prompt & Validation for Item Quantity
-<img src="images/03-validation.png">
+<img src="images/customer-03-validation.png">
 
 ### Customer 04_Order Summary / Total Price / Updated Quantity
-<img src="images/04-order-placed.png">
+<img src="images/customer-04-order-placed.png">
 
 ### Customer 05_Updated Quantity in Database after order is placed
-<img src="images/05-db-update-after-order.png">
+<img src="images/customer-05-db-update-after-order.png">
 
 ### Customer 06_Messages when there is not enough stock
-<img src="images/06-not-enough-stock.png">
+<img src="images/customer-06-not-enough-stock.png">
 
+### Manager 01_Initial Values of Existing Products in Database
+<img src="images/manager-01-initial-value-db.png">
 
+### Manager 02_View Products for Sale - Prompt
+<img src="images/manager-02-view-product-01.png">
 
+### Manager 03_View Products for Sale
+<img src="images/manager-03-view-product-02.png">
 
+### Manager 04_View Low Inventory - Prompt
+<img src="images/manager-04-view-low-inventory-01.png">
+
+### Manager 05_View Low Inventory (Qty < 5)
+<img src="images/manager-05-view-low-inventory-02.png">
+
+### Manager 06_Add to Inventory - Prompt
+<img src="images/manager-06-add-to-inventory-01.png">
+
+### Manager 07_Add to Inventory - Validation for Item ID
+<img src="images/manager-07-add-to-inventory-02-validation-01.png">
+
+### Manager 08_Add to Inventory - Validation for Item Quantity
+<img src="images/manager-08-add-to-inventory-03-validation-02.png">
+
+### Manager 09_Add to Inventory - Updated Inventory
+<img src="images/manager-09-add-to-inventory-04.png">
+
+### Manager 10_Add a New Product - Prompt
+<img src="images/manager-10-add-new-product-01.png">
+
+### Manager 11_Add a New Product - Updated Products List
+<img src="images/manager-11-add-new-product-02.png">
+
+### Manager 12_Add a New Product - Updated Database
+<img src="images/manager-12-add-new-product-03.png">
+
+### Manager 13_Log Out - Prompt
+<img src="images/manager-13-log-out-01.png">
+
+### Manager 14_Log Out
+<img src="images/manager-14-log-out-02.png">
