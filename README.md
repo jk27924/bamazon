@@ -48,7 +48,7 @@ Then, the user is able to purchase one of those listed products by inputting its
   * If a manager selects `Add New Product`, it should allow the manager to add a completely new product to the store.
   
 - Log Out
-* Simple Interface added lastly to say Good Bye, when the job is done.
+  * If a manager is done with everything, manager can select this interface, and the system will give out Good Bye message.
 
 
 **3. Supervisor Interface: node bamazonSupervisor.js**
