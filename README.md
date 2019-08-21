@@ -67,7 +67,7 @@ Then, the user is able to purchase one of those listed products by inputting its
 
 ## Demonstration Video
 1) bamazonCustomer.js : https://youtu.be/ymjpHojze4M
-2) bamazonManager.js : 
+2) bamazonManager.js : https://youtu.be/-Lc4MH6gyhM
 
 ## Screenshots of App
 
