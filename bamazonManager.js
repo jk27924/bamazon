@@ -78,7 +78,6 @@ function viewProducts () {
 
 // -------------------------------
 
-
 function viewLowInven () {
     connection.query("SELECT * FROM products", function(err, res) {
         if (err) throw err;
@@ -99,9 +98,7 @@ function viewLowInven () {
     }); 
 }
 
-
 // -------------------------------
-
 
 function addInven () {
     connection.query("SELECT * FROM products", function(err, res) {
@@ -117,7 +114,6 @@ function addInven () {
             console.log("------------------------------------------------------------------------------------------------------------------------------------");
         };
 
-// -------------------------------
         console.log ("\n");
         inquirer.prompt([
             {
@@ -143,8 +139,6 @@ function addInven () {
                 }
             }
 
-// -------------------------------
-
         ]).then(function(answer) {
             var itemAdd = res[answer.add - 1];
             var quantityAdd = itemAdd.stock_quantity + parseInt(answer.qty);
@@ -164,7 +158,7 @@ function addInven () {
 
                     console.log (
                         "\n------------------------------------------------------------------------------------------------------------------------------------" +
-                        "\n*** UPDATE INVENTORY ***" + 
+                        "\n*** INVENTORY UPDATED ***" + 
                         "\n------------------------------------------------------------------------------------------------------------------------------------" + 
                         "\nItem ID: " + itemAdd.item_id + 
                         "\nProduct Name: " + itemAdd.product_name + 
@@ -172,7 +166,7 @@ function addInven () {
                         "\nUnit Price: $" + itemAdd.price + 
                         "\nNewly Updated Quantity: " + quantityAdd + 
                         "\n------------------------------------------------------------------------------------------------------------------------------------" +
-                        "\n<< " + answer.qty + " of inventory has been added to " + itemAdd.product_name + " >>" +
+                        "\n<< " + answer.qty + " of " + itemAdd.product_name + " has been added to Inventory" + " >>" +
                         "\n------------------------------------------------------------------------------------------------------------------------------------"
                     );
 
@@ -183,7 +177,6 @@ function addInven () {
         });
     });
 }
-
 
 // -------------------------------
 
@@ -262,6 +255,8 @@ function addProduct () {
     });
 }
 
+// -------------------------------
+
 function readProducts() {
     console.log ("\n");
     
@@ -282,6 +277,8 @@ function readProducts() {
 
     });
 }
+
+// -------------------------------
 
 function logout() {
     console.log("\n------------------------------------------------------------- GOOD BYE -------------------------------------------------------------\n");
