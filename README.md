@@ -47,6 +47,9 @@ Then, the user is able to purchase one of those listed products by inputting its
 - Add New Product
   * If a manager selects `Add New Product`, it should allow the manager to add a completely new product to the store.
   
+- Log Out
+* Simple Interface added lastly to say Good Bye, when the job is done.
+
 
 **3. Supervisor Interface: node bamazonSupervisor.js**
 
