@@ -66,26 +66,27 @@ Then, the user is able to purchase one of those listed products by inputting its
 
 
 ## Demonstration Video
-https://youtu.be/ymjpHojze4M
+1) bamazonCustomer.js : https://youtu.be/ymjpHojze4M
+2) bamazonManager.js : 
 
 ## Screenshots of App
 
-### 01_Initial Values of Existing Products in Database
+### Customer 01_Initial Values of Existing Products in Database
 <img src="images/01-initial-value-db.png">
 
-### 02_Purchase Prompt & Validation for Item ID
+### Customer 02_Purchase Prompt & Validation for Item ID
 <img src="images/02-validation.png">
 
-### 03_Purchase Prompt & Validation for Item Quantity
+### Customer 03_Purchase Prompt & Validation for Item Quantity
 <img src="images/03-validation.png">
 
-### 04_Order Summary / Total Price / Updated Quantity
+### Customer 04_Order Summary / Total Price / Updated Quantity
 <img src="images/04-order-placed.png">
 
-### 05_Updated Quantity in Database after order is placed
+### Customer 05_Updated Quantity in Database after order is placed
 <img src="images/05-db-update-after-order.png">
 
-### 06_Messages when there is not enough stock
+### Customer 06_Messages when there is not enough stock
 <img src="images/06-not-enough-stock.png">
 
 
